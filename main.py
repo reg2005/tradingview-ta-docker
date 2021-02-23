@@ -31,7 +31,7 @@ class MyServer(BaseHTTPRequestHandler):
 
         print({symbol, screener, exchange, interval}, analyse)
         self._set_headers()
-        self.wfile.write(bytes(json.dumps({'request': {'symbol': symbol, screener: 'screener', 'exchange': exchange, 'interval': interval}, 'result': {'summary': analyse.summary, 'time': analyse.time.isoformat(), 'oscillators': analyse.oscillators, 'moving_averages': analyse.moving_averages, 'indicators': analyse.indicators}}), "utf-8"))
+        self.wfile.write(bytes(json.dumps({'request': {'symbol': symbol, 'screener': screener, 'exchange': exchange, 'interval': interval}, 'result': {'summary': analyse.summary, 'time': analyse.time.isoformat(), 'oscillators': analyse.oscillators, 'moving_averages': analyse.moving_averages, 'indicators': analyse.indicators}}), "utf-8"))
 
 if __name__ == "__main__":        
     webServer = HTTPServer((hostName, serverPort), MyServer)
